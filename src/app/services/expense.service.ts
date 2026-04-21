@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 // ← Export this so dashboard + table can import it
 export interface Expense {
@@ -16,7 +17,7 @@ export interface Expense {
 @Injectable({ providedIn: 'root' })
 export class ExpenseService {
 
-  private api = 'http://localhost:5000/api/expenses';
+ private api = `${environment.apiUrl}/expenses`;
 
   constructor(private http: HttpClient) {}
 
