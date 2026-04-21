@@ -1,0 +1,79 @@
+<div class="dialog-header">
+  <div class="dialog-title">
+    <mat-icon>add_circle</mat-icon>
+    <h2>Add New Expense</h2>
+  </div>
+  <button mat-icon-button (click)="close()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <form [formGroup]="expenseForm" class="form">
+
+    <!-- Type Toggle -->
+    <div class="type-toggle">
+      <button type="button" [class.active]="expenseForm.get('type')?.value === 'expense'"
+        (click)="expenseForm.patchValue({type: 'expense'})">
+        <mat-icon>trending_down</mat-icon> Expense
+      </button>
+      <button type="button" [class.active]="expenseForm.get('type')?.value === 'income'"
+        (click)="expenseForm.patchValue({type: 'income'})">
+        <mat-icon>trending_up</mat-icon> Income
+      </button>
+    </div>
+
+    <!-- Amount -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Amount (₹)</mat-label>
+      <mat-icon matPrefix>currency_rupee</mat-icon>
+      <input matInput type="number" formControlName="amount" placeholder="0.00">
+      <mat-error *ngIf="expenseForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+      <mat-error *ngIf="expenseForm.get('amount')?.hasError('min')">Must be greater than 0</mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <mat-icon matPrefix>notes</mat-icon>
+      <input matInput formControlName="description" placeholder="e.g. Grocery Store">
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <mat-icon matPrefix>category</mat-icon>
+      <mat-select formControlName="category">
+        <mat-option value="Food">🍔 Food</mat-option>
+        <mat-option value="Transportation">🚗 Transportation</mat-option>
+        <mat-option value="Shopping">🛍️ Shopping</mat-option>
+        <mat-option value="Dining">🍽️ Dining</mat-option>
+        <mat-option value="Health">❤️ Health</mat-option>
+        <mat-option value="Entertainment">🎬 Entertainment</mat-option>
+        <mat-option value="Utilities">⚡ Utilities</mat-option>
+        <mat-option value="Education">📚 Education</mat-option>
+        <mat-option value="Income">💰 Income</mat-option>
+        <mat-option value="Other">📦 Other</mat-option>
+      </mat-select>
+      <mat-error *ngIf="expenseForm.get('category')?.hasError('required')">Category is required</mat-error>
+    </mat-form-field>
+
+    <!-- Date -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date</mat-label>
+      <mat-icon matPrefix>calendar_today</mat-icon>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="MM/DD/YYYY">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="expenseForm.get('date')?.hasError('required')">Date is required</mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button (click)="close()">Cancel</button>
+  <button mat-flat-button class="submit-btn" (click)="submit()" [disabled]="expenseForm.invalid">
+    <mat-icon>check</mat-icon> Save Expense
+  </button>
+</mat-dialog-actions>

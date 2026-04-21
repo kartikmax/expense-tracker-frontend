@@ -1,0 +1,113 @@
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f2f8;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Card top row — label + icon */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.2px;
+}
+
+/* Colored icon bubbles */
+.icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 17px;
+    width: 17px;
+    height: 17px;
+    color: #fff;
+  }
+
+  &.red    { background: linear-gradient(135deg, #ef4444, #f87171); }
+  &.green  { background: linear-gradient(135deg, #16a34a, #4ade80); }
+  &.blue   { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+  &.purple { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+}
+
+/* Main value */
+.card-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+/* Bottom row */
+.card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sub-label {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Trend badge */
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+
+  mat-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+  }
+
+  &.up {
+    color: #16a34a;
+    background: #dcfce7;
+  }
+
+  &.down {
+    color: #ef4444;
+    background: #fee2e2;
+  }
+}
+
+/* Accent left border per card type */
+.card-red    { border-left: 3px solid #ef4444; }
+.card-green  { border-left: 3px solid #16a34a; }
+.card-blue   { border-left: 3px solid #3b82f6; }
+.card-purple { border-left: 3px solid #7c3aed; }

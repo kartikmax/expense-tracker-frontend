@@ -1,0 +1,29 @@
+<div class="chart-card">
+
+  <div class="card-header">
+    <h3>Category Breakdown</h3>
+    <span class="subtitle">This month</span>
+  </div>
+
+  <!-- Donut Chart -->
+  <apx-chart
+    [series]="pieChartOptions.series"
+    [chart]="pieChartOptions.chart"
+    [labels]="pieChartOptions.labels"
+    [colors]="pieChartOptions.colors"
+    [plotOptions]="pieChartOptions.plotOptions"
+    [legend]="pieChartOptions.legend"
+    [dataLabels]="pieChartOptions.dataLabels"
+    [stroke]="pieChartOptions.stroke">
+  </apx-chart>
+
+  <!-- Custom Legend -->
+  <div class="pie-legend">
+    <div class="legend-item" *ngFor="let label of pieLabels; let i = index">
+      <span class="legend-dot" [style.background]="pieColors[i]"></span>
+      <span class="legend-label">{{ label }}</span>
+      <span class="legend-value">{{ pieSeries[i] }}%</span>
+    </div>
+  </div>
+
+</div>

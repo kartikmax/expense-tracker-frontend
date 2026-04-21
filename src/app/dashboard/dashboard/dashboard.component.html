@@ -1,0 +1,32 @@
+<!-- dashboard.component.html -->
+<div class="dashboard-wrapper">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <span class="breadcrumb">Dashboard</span>
+      <h2>Dashboard Overview</h2>
+    </div>
+    <div class="top-bar-right">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Search funds, startups, transactions..." />
+      </div>
+      <button mat-raised-button class="add-btn" (click)="openExpenseDialog()">
+        <mat-icon>add</mat-icon>
+        Add Expense
+      </button>
+      <button class="avatar-btn">AK</button>
+    </div>
+  </div>
+
+  <!-- Dashboard Body -->
+  <div class="dashboard-content">
+    <app-summary-cards [data]="summaryData"></app-summary-cards>
+   <div class="charts-table-row">
+  <app-charts [chartData]="categoryChartData"></app-charts>
+  <app-expense-table [dataSource]="expenses"></app-expense-table>
+</div>
+  </div>
+
+</div>
